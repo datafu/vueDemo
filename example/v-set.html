@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-set</title>
+    <script type="text/javascript" src="../assert/js/vue.js"></script>
+
+</head>
+<body>
+        <h1>vue.set</h1>
+        <div id="app">
+               <ul>
+                   <li  v-for="(item, index) in arr" :key="index">{{item}}</li>
+               </ul>
+               <button onclick="change()"></button>
+        </div>
+            <script type="text/javascript">
+                function change(){
+                    console.log("我已经执行了");
+                    Vue.set(vue.arr,1,'我变了');
+                }
+                var outData = {
+                    arr:['a','b','c']
+                }
+
+                var vue = new Vue({
+                    el:"#app",
+                    data:outData
+                })
+            </script>
+
+    
+</body>
+</html>

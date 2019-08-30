@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-for</title>
+    <script type="text/javascript" src="../assert/js/vue.js"></script>
+
+</head>
+<body>
+        <div id="app">
+                <ul>
+                    <li v-for="(item, index) in sortItems" :key="index">
+                        {{item}}
+                    </li>
+                </ul>
+                <ul>
+                    <li v-for="student in sortStudents">
+                            {{student.name}} - {{student.age}}
+                        </li>
+                 </ul>
+
+            </div>
+            <script type="text/javascript">
+                var vue = new Vue({
+                    el:"#app",
+                    data:{
+                       items:[12,1,2,3,35],
+                       students:[
+                        {name:'jspang',age:32},
+                        {name:'Panda',age:30},
+                        {name:'PanPaN',age:21},
+                        {name:'King',age:45}] 
+                    },
+                    computed:{
+                        // 计算属性 需要重新定义将之前数据进行排序
+                    sortItems:function(){
+                        return this.items.sort(sortNumber);
+                    },
+                    sortStudents:function(){
+                        return sortByKey(this.students,'age');
+                        }
+                    }
+               });
+               //排序方法
+               function sortNumber(a,b){
+                    return a-b
+                }
+                //数组对象方法排序:
+                function sortByKey(array,key){
+                    return array.sort(function(a,b){
+                    var x=a[key];
+                    var y=b[key];
+                    return ((x<y)?-1:((x>y)?1:0));
+                });
+                }
+
+
+            </script>
+
+    
+</body>
+</html>

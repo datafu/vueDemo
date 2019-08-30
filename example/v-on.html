@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-on</title>
+    <script type="text/javascript" src="../assert/js/vue.js"></script>
+
+</head>
+<body>
+    <!-- 制作一个计分器 -->
+        <div id="app">
+            本地比赛计分器{{scores}}
+            <p>
+                    <button @click="add">加分</button>
+                    <button @click="reduce">减分</button>
+                    <input type="text" @keyup.enter="enterFunc" v-model="scoresChange" >
+            </p>
+        </div>
+            <script type="text/javascript">
+                var vue = new Vue({
+                    el:"#app",
+                    data:{
+                       scores: 0,
+                       scoresChange: 0
+                    },
+                    methods: {
+                        add:function(){
+                            this.scores ++;
+                        },
+                        reduce:function(){
+                            this.scores --;
+                        },
+                        enterFunc: function() {
+                            //如果不使用parseint ，就可能直接字符串拼接了
+                            this.scores = this.scores + parseInt(this.scoresChange)
+                        }
+                    },
+                })
+            </script>
+
+    
+</body>
+</html>
